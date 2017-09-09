@@ -1,0 +1,122 @@
+{
+  "availabilityString": {
+    "email": "",
+    "facebook": "",
+    "phone": "",
+    "whatsapp": ""
+  },
+  "plans": {
+    "weekday": {
+      "email": {
+        "r1": {
+          "id": 1,
+          "start": "8:00"
+        }
+      },
+      "facebook": {
+        "r1": {
+          "id": 1,
+          "start": "20:00"
+        }
+      },
+      "phone": {
+        "r1": {
+          "end": "10:00",
+          "id": 1,
+          "start": "8:00"
+        },
+        "r2": {
+          "end": "20:00",
+          "id": 2,
+          "start": "18:00"
+        }
+      },
+      "whatsapp": {
+        "r1": {
+          "end": "10:00",
+          "id": 1,
+          "start": "8:00"
+        }
+      }
+    },
+    "weekend": {
+      "email": {
+        "r1": {
+          "id": 1,
+          "start": "21:30"
+        }
+      },
+      "facebook": {},
+      "phone": {},
+      "whatsapp": {
+        "r1": {
+          "end": "20:00",
+          "id": 1,
+          "start": "18:00"
+        }
+      }
+    }
+  },
+  "plansByDate": {
+    "2017": {
+      "9": {
+        "9": {
+          "email": {
+            "r1": {
+              "id": 1,
+              "start": "8:00"
+            },
+            "r2": {
+              "id": 2,
+              "start": "20:15"
+            }
+          },
+          "facebook": {
+            "r1": {
+              "id": 1,
+              "start": "20:30"
+            }
+          },
+          "phone": {
+            "r1": {
+              "end": "9:30",
+              "id": 1,
+              "start": "9:00"
+            },
+            "r2": {
+              "end": "13:00",
+              "id": 2,
+              "start": "12:45"
+            },
+            "r3": {
+              "end": "17:00",
+              "id": 3,
+              "start": "15:00"
+            },
+            "r4": {
+              "end": "10:45",
+              "id": 4,
+              "start": "10:30"
+            }
+          },
+          "whatsapp": {
+            "r1": {
+              "end": "9:30",
+              "start": "9:00"
+            }
+          }
+        }
+      }
+    }
+  },
+  "settings": {
+    "day": {
+      "end": "18:00",
+      "start": "8:00"
+    },
+    "defaultLanguage": "en",
+    "name": "",
+    "timezone": "US"
+  },
+  "type": "DYNAMIC"
+}
