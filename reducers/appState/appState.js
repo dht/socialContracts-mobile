@@ -3,11 +3,6 @@ import {defaultAppState} from '../../constants/appState';
 
 import clone from 'clone';
 
-const AH_TYPES = {
-    STATIC: 'STATIC',
-    DYNAMIC: 'DYNAMIC'
-}
-
 export const initialState = defaultAppState;
 
 export const ActionTypes = {

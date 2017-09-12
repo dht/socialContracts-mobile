@@ -18,3 +18,6 @@ export const daysAgo = (timestamp) => {
     return Math.floor(delta / days);
 }
 
+export const capitalize = (string) => {
+    return string.substr(0, 1).toUpperCase() + string.substr(1);
+}

@@ -22,13 +22,13 @@ const ICON_SIZES = {
     facebook:30,
     email:27,
 }
-export default class ChannelRow extends Component {
+export default class RangeRow extends Component {
 
     render() {
         const {data} = this.props,
             {channel, text,} = data;
 
-        const icon = ICONS[channel],
+        const icon = 'remove',
             icon_size = ICON_SIZES[channel];
 
         return (
@@ -36,11 +36,11 @@ export default class ChannelRow extends Component {
                 underlayColor="#eeeeee"
                 onPress={this.props.onClick}>
                 <View style={styles.container}>
+                    <Text style={styles.hours}>{text || 'not available'}</Text>
                     <View style={styles.iconContainer}>
-                        <Icon.Button size={icon_size} name={icon} color="#333" backgroundColor="transparent">
+                        <Icon.Button onPress={this.props.onRemove} size={icon_size} name={icon} color="#333" backgroundColor="transparent">
                         </Icon.Button>
                     </View>
-                    <Text style={styles.hours}>{text || 'not available'}</Text>
                 </View>
             </TouchableHighlight>
         );
@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
     },
     iconContainer: {
         width: 55,
+        borderWidth:1,
         alignItems:'center',
         justifyContent:'center',
     },

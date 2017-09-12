@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {
     StyleSheet,
     ListView,
-    View
+    View,
 } from 'react-native';
 
 import ChannelRow from './row/ChannelRow';
@@ -13,13 +13,8 @@ export default class ContactScreen extends Component {
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
         this.state = {
-            dataSource: ds.cloneWithRows([]),
+            dataSource: ds.cloneWithRows(props.hours),
         };
-
-        this.onRowClick = this.onRowClick.bind(this);
-    }
-
-    componentDidMount() {
     }
 
     componentWillReceiveProps(props) {
@@ -27,19 +22,13 @@ export default class ContactScreen extends Component {
             dataSource: this.state.dataSource.cloneWithRows(props.hours)
         })
     }
-
-    onRowClick(rowData) {
-        this.setState({
-            showOptions: true,
-            focusedId: rowData.id,
-            focusedName: rowData.name
-        });
-    }
-
     render() {
 
-        console.log('this.state.dataSource -> ', this.state.dataSource);
-        
+        // const isEmpty = this.state.dataSource.getRowCount() === 0;
+
+        // console.log('isEmpty -> ', isEmpty);
+
+
         return (
             <View style={styles.container}>
                 <ListView
@@ -48,9 +37,10 @@ export default class ContactScreen extends Component {
                     dataSource={this.state.dataSource}
                     renderRow={(rowData) => <ChannelRow
                         data={rowData}
-                        onClick={() => this.onRowClick(rowData)}
+                        onClick={() => this.props.onRowClick(rowData)}
                     />}
                 />
+
             </View>
         );
     }

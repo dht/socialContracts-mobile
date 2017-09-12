@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
         flex:1,
         fontSize:22,
         textAlign:'center',
+        paddingRight:20,
     }
 });
 

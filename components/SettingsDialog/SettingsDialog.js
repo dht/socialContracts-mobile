@@ -15,20 +15,31 @@ export default class SettingsDialog extends Component {
         super(props);
 
         this.state = {
-            text: ''
+            name: props.name
         };
 
         this.saveSettings = this.saveSettings.bind(this);
     }
 
-    saveSettings() {
+    componentWillReceiveProps(props) {
+        const {name} = props;
 
+        if (name !== this.state.name) {
+            this.setState({
+                name,
+            })
+        }
+    }
+    saveSettings() {
+        const {name} = this.state;
+
+        this.props.saveSettings({name});
     }
 
     render() {
         return (
             <Modal animationType={"fade"}
-                   transparent={true}
+                   transparent={false}
                    visible={this.props.visible}>
                 <Screen
                     title="Settings"
@@ -42,8 +53,8 @@ export default class SettingsDialog extends Component {
                     <Text style={styles.label}>Your name:</Text>
                     <TextInput
                         style={styles.input}
-                        onChangeText={(text) => this.setState({text})}
-                        value={this.state.text}
+                        onChangeText={(name) => this.setState({name})}
+                        value={this.state.name}
                     />
                     </View>
 
@@ -56,12 +67,15 @@ export default class SettingsDialog extends Component {
 const styles = StyleSheet.create({
     label: {},
     input: {
+        marginTop:5,
         height: 40,
+        paddingVertical:3,
+        paddingHorizontal:8,
         borderColor: 'gray',
         borderWidth: 1
     },
     innerContainer: {
-
+        padding:30,
     }
 });
 

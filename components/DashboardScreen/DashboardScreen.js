@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {
     StyleSheet,
-    Text,
     ListView,
     View
 } from 'react-native';
 
+import SettingsDialog from '../SettingsDialog/SettingsDialogContainer';
 
 // import ScrollableTabView from 'react-native-scrollable-tab-view';
 
@@ -23,6 +23,8 @@ export default class ContactScreen extends Component {
         };
 
         this.showSettingsModal = this.showSettingsModal.bind(this);
+        this.saveSettings = this.saveSettings.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
 
     componentDidMount() {
@@ -42,13 +44,21 @@ export default class ContactScreen extends Component {
     }
 
     closeModal() {
+        console.log('closeModal -> ', true);
         this.setState({
             showSettings: false,
         });
     }
 
+    saveSettings(settings) {
+        console.log('settings -> ', settings);
+        this.closeModal();
+        this.props.saveSettings(settings);
+    }
 
     render() {
+        const {showSettings} = this.state;
+
         return (
 
             <View style={styles.container}>
@@ -60,7 +70,17 @@ export default class ContactScreen extends Component {
                     onRightClick={this.props.openLink}
                     actionText="Share your availability"
                 >
-                    <AvailabilityHours tabLabel="Weekday" style={styles.hours} hours="weekday" />
+                    <AvailabilityHours
+                        navigator={this.props.navigator}
+                        tabLabel="Weekday"
+                        style={styles.hours}
+                        hours="weekday"/>
+
+                    {showSettings ? <SettingsDialog
+                        saveSettings={this.saveSettings}
+                        closeModal={this.closeModal}
+                    /> : null}
+
                 </Screen>
             </View>
         );
@@ -75,10 +95,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#F5FCFF',
     },
     tabs: {
-        flex:1,
+        flex: 1,
     },
     hours: {
-        flex:1,
+        flex: 1,
     }
 
 

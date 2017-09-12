@@ -29,7 +29,10 @@ export default class Screen extends Component {
                 </View>
 
                 <View style={styles.cta}>
-                    <BigButton icon={this.props.rightIcon} title={this.props.actionText} />
+                    <BigButton
+                        icon={this.props.rightIcon}
+                        onClick={this.props.onRightClick}
+                        title={this.props.actionText} />
                 </View>
             </View>
         );

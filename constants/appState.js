@@ -1,5 +1,28 @@
+export const formatTypes = {
+    STATIC: 'static',
+    DYNAMIC: 'dynamic',
+}
+
+export const planTypes = {
+    WEEKDAY: 'weekday',
+    WEEKEND: 'weekend',
+}
+
+export const channelTypes = {
+    NONE: 'none',
+    PHONE: 'phone',
+    WHATSAPP: 'whatsapp',
+    EMAIL: 'email',
+    FACEBOOK: 'facebook',
+}
+
 export const defaultAppState = {
-    type: 'DYNAMIC',
+    type: formatTypes.DYNAMIC,
+    currentPlan:planTypes.WEEKDAY,
+    currentChannel:channelTypes.PHONE,
+    currentRangeId: 0,
+    titleHeader: '',
+    instructions: '',
     availabilityString: {
         phone: '',
         whatsapp: '',

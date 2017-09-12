@@ -12,6 +12,8 @@
 		"react": "16.0.0-alpha.12",
 		"react-native": "0.47.1",
 		"react-native-communications": "^2.2.1",
+		"react-native-deprecated-custom-components": "^0.1.1",
+		"react-native-modal-datetime-picker": "^4.11.0",
 		"react-native-scrollable-tab-view": "^0.6.7",
 		"react-native-search-box": "^0.0.10",
 		"react-native-swipe-list-view": "^0.4.1",

@@ -1,6 +1,8 @@
 import {connect} from 'react-redux'
 import AvailabilityHours from './AvailabilityHours';
 import {hoursToList} from '../../utils/ranges';
+import {setCurrentChannel, setTitlebarHeader} from '../../reducers/UIState/UIState_actions';
+import routes from '../../constants/routes';
 
 const mapStateToProps = (state, ownProps) => {
 
@@ -28,7 +30,11 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        setPlan: (id, plan) => {
+        onRowClick: (rowData) => {
+            console.log('rowData -> ', rowData, ownProps);
+            dispatch(setTitlebarHeader(`${rowData.channel} (${ownProps.hours})`));
+            dispatch(setCurrentChannel(rowData.channel));
+            ownProps.navigator.push(routes.RANGES);
         },
     }
 }
