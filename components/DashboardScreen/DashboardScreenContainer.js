@@ -1,12 +1,17 @@
 import {connect} from 'react-redux'
-import {Linking} from 'react-native'
 import DashboardScreen from './DashboardScreen'
 
-import {loadApp} from '../../reducers/app_thunks';
+import {loadApp, openContractInBrowser} from '../../reducers/app_thunks';
 import {setName} from '../../reducers/appState/appState_actions';
+import {setCurrentPlanType} from '../../reducers/UIState/UIState_actions';
 
 const mapStateToProps = (state, ownProps) => {
-    return {};
+    const {uiState} = state,
+        {isLoading} = uiState;
+
+    return {
+        isLoading
+    };
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -15,11 +20,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             dispatch(loadApp());
         },
         openLink:()=> {
-
+            dispatch(openContractInBrowser());
         },
         saveSettings: (settings) => {
             dispatch(setName(settings.name))
         },
+        onChangeTab: ({i}) => {
+            dispatch(setCurrentPlanType(i === 0 ? 'weekday' : 'weekend'));
+        }
 
     }
 }

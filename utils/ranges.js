@@ -6,7 +6,7 @@ export const getMaxId = (ranges) => {
 }
 
 export const rangeToText = (range) => {
-    return range.end ? `${range.start} - ${range.end}` : `${range.start}`;
+    return range.end ? `${range.start}-${range.end}` : `${range.start}`;
 }
 
 export const rangesToText = (ranges) => {
@@ -30,9 +30,11 @@ export const rangesToText = (ranges) => {
  */
 
 export const hoursToList = (a_hours) => {
-    return Object.keys(a_hours).reduce((output, channel) => {
+    // future: Object.keys(a_hours)
+    // for better sorting
+    return ['phone', 'whatsapp', 'email', 'facebook'].reduce((output, channel) => {
         const ranges = a_hours[channel],
-            text = rangesToText(ranges);
+            text = rangesToText(ranges || {});
 
         output.push({
             channel,
@@ -132,6 +134,6 @@ export const newValueForChannel = (channel) => {
 }
 
 export const nextId = (state) => {
-    const ranges = getRanges(state);
+    const ranges = getRanges(state) || {};
     return getMaxId(ranges) + 1;
 }

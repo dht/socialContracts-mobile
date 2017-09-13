@@ -1,11 +1,12 @@
 import {getMaxId} from '../../utils/ranges';
-import {defaultAppState} from '../../constants/appState';
+import {emptyAppState} from '../../constants/appState';
 
 import clone from 'clone';
 
-export const initialState = defaultAppState;
+export const initialState = emptyAppState;
 
 export const ActionTypes = {
+    SET_APP_STATE:'SET_APP_STATE',
     SET_NAME: 'SET_NAME',
     SET_TIMEZONE: 'SET_TIMEZONE',
     SET_DEFAULT_LANGUAGE: 'SET_DEFAULT_LANGUAGE',
@@ -214,6 +215,9 @@ const settings = (state = {}, action) => {
 const appState = (state = initialState, action) => {
 
     switch (action.type) {
+        case ActionTypes.SET_APP_STATE:
+            return action.value;
+
         case ActionTypes.SET_NAME:
         case ActionTypes.SET_TIMEZONE:
         case ActionTypes.SET_DEFAULT_LANGUAGE:

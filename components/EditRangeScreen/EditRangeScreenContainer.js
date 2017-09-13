@@ -5,6 +5,9 @@ import {getRange} from '../../utils/ranges';
 import {saveRangeForCurrent} from '../../reducers/appState/appState_actions';
 
 const mapStateToProps = (state, ownProps) => {
+
+    console.log('true4 -> ', true);
+
     const {uiState} = state,
         {titleHeader, instructions} = uiState,
         range = getRange(state);

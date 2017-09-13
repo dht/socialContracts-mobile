@@ -9,9 +9,11 @@ import {setInstructions, setCurrentRangeId,} from '../../reducers/UIState/UIStat
 
 const mapStateToProps = (state, ownProps) => {
 
+    console.log('true3 -> ', true);
+
     const {uiState} = state,
         {currentChannel, titleHeader} = uiState,
-        ranges = getRanges(state),
+        ranges = getRanges(state) || {},
         listHeader = listHeaderForChannel(currentChannel, ranges.length > 0),
         addVerbText = addVerbTextForChannel(currentChannel),
         newId = nextId(state);

@@ -7,10 +7,12 @@ import {
 
 import ChannelRow from './row/ChannelRow';
 
-export default class ContactScreen extends Component {
+export default class AvailabilityHours extends Component {
     constructor(props) {
         super(props);
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+
+        console.log('props.hours -> ', props.hours);
 
         this.state = {
             dataSource: ds.cloneWithRows(props.hours),
@@ -18,6 +20,8 @@ export default class ContactScreen extends Component {
     }
 
     componentWillReceiveProps(props) {
+        console.log('props.hours -> ', props.hours);
+
         this.setState({
             dataSource: this.state.dataSource.cloneWithRows(props.hours)
         })

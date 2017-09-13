@@ -18,11 +18,6 @@ export const channelTypes = {
 
 export const defaultAppState = {
     type: formatTypes.DYNAMIC,
-    currentPlan:planTypes.WEEKDAY,
-    currentChannel:channelTypes.PHONE,
-    currentRangeId: 0,
-    titleHeader: '',
-    instructions: '',
     availabilityString: {
         phone: '',
         whatsapp: '',
@@ -41,6 +36,38 @@ export const defaultAppState = {
             whatsapp: {r1: {id: 1, start: '8:30', end: '18:00'}},
             email: {r1: {id: 1, start: '8:00'}},
             facebook: {r1: {id: 1, start: '20:00'}},
+        },
+        weekend: {
+            phone: {r1: {id: 1, start: '8:30', end: '18:00'}},
+            whatsapp: {r1: {id: 1, start: '8:30', end: '18:00'}},
+            email: {r1: {id: 1, start: '8:00'}},
+            facebook: {r1: {id: 1, start: '20:00'}},
+        }
+    },
+    plansByDate: {
+    }
+}
+
+export const emptyAppState = {
+    type: formatTypes.DYNAMIC,
+    availabilityString: {
+        phone: '',
+        whatsapp: '',
+        email: '',
+        facebook: '',
+    },
+    settings: {
+        name: '',
+        timezone: 'US',
+        defaultLanguage: 'en',
+        day: {start: '8:00', end: '18:00'}
+    },
+    plans: {
+        weekday: {
+            phone: {},
+            whatsapp: {},
+            email: {},
+            facebook: {},
         },
         weekend: {
             phone: {},

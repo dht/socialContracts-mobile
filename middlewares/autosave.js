@@ -1,6 +1,8 @@
+import {ActionTypes} from '../reducers/appState/appState';
+import {saveContractAfterChange} from '../reducers/app_thunks';
 
-const acceptActions = [];
-const ignoreActions = [];
+const acceptActions = Object.keys(ActionTypes);
+const ignoreActions = [ActionTypes.SET_APP_STATE, ];
 
 const autosave = store => next => action => {
 
@@ -10,6 +12,7 @@ const autosave = store => next => action => {
 		acceptActions.indexOf(action.type) >= 0 &&
 		ignoreActions.indexOf(action.type) === -1) {
 
+		store.dispatch(saveContractAfterChange());
 	}
 
 	return result

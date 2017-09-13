@@ -6,8 +6,11 @@ import routes from '../../constants/routes';
 
 const mapStateToProps = (state, ownProps) => {
 
-    const {appState} = state,
+    console.log('true5 -> ', true);
+
+    const {appState, uiState} = state,
         {plans} = appState,
+        {isLoading} = uiState,
         {weekday, weekend} = plans;
 
     let hours;
@@ -21,10 +24,17 @@ const mapStateToProps = (state, ownProps) => {
             break;
     }
 
-    console.log('hours -> ', hours);
+    if (isLoading) {
+        hours = [
+            {channel:'phone', text:'loading...',},
+            {channel:'whatsapp', text:'loading...',},
+            {channel:'email', text:'loading...',},
+            {channel:'facebook', text:'loading...',},
+        ]
+    }
 
     return {
-        hours: hours
+        hours,
     }
 }
 

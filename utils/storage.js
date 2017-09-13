@@ -1,5 +1,4 @@
-const CONTACTS_KEY = 'CONTACTS';
-const HIDDEN_KEY = 'HIDDEN';
+const USER_KEY = 'USER';
 
 import {AsyncStorage} from 'react-native';
 
@@ -12,17 +11,14 @@ export const getJson = (key) => {
         .then(response =>  JSON.parse(response));
 }
 
-export const saveContacts = (contacts) => {
-    return saveJson(CONTACTS_KEY, contacts);
+export const saveUser = (user) => {
+    return saveJson(USER_KEY, user);
 }
 
-export const getContacts = () => {
-   return getJson(CONTACTS_KEY);
-}
-export const saveHidden = (hidden) => {
-    return saveJson(HIDDEN_KEY, hidden);
+export const getUser = () => {
+    return getJson(USER_KEY);
 }
 
-export const getHidden = () => {
-    return getJson(HIDDEN_KEY);
+export const clear = () => {
+    AsyncStorage.clear();
 }

@@ -7,18 +7,16 @@ import {
 
 import SettingsDialog from '../SettingsDialog/SettingsDialogContainer';
 
-// import ScrollableTabView from 'react-native-scrollable-tab-view';
+import ScrollableTabView from 'react-native-scrollable-tab-view';
 
 import AvailabilityHours from '../AvailabilityHours/AvailabilityHoursContainer';
 import Screen from '../Screen/Screen';
 
-export default class ContactScreen extends Component {
+export default class DashboardScreen extends Component {
     constructor(props) {
         super(props);
-        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
         this.state = {
-            dataSource: ds.cloneWithRows([]),
             showSettings: false,
         };
 
@@ -29,12 +27,6 @@ export default class ContactScreen extends Component {
 
     componentDidMount() {
         this.props.loadApp();
-    }
-
-    componentWillReceiveProps(props) {
-        this.setState({
-            dataSource: this.state.dataSource.cloneWithRows(props.contacts)
-        })
     }
 
     showSettingsModal() {
@@ -57,6 +49,7 @@ export default class ContactScreen extends Component {
     }
 
     render() {
+        const {isLoading} = this.props;
         const {showSettings} = this.state;
 
         return (
@@ -70,11 +63,19 @@ export default class ContactScreen extends Component {
                     onRightClick={this.props.openLink}
                     actionText="Share your availability"
                 >
-                    <AvailabilityHours
-                        navigator={this.props.navigator}
-                        tabLabel="Weekday"
-                        style={styles.hours}
-                        hours="weekday"/>
+
+                    <ScrollableTabView onChangeTab={this.props.onChangeTab}>
+                        <AvailabilityHours
+                            navigator={this.props.navigator}
+                            tabLabel="Weekday"
+                            style={styles.hours}
+                            hours="weekday"/>
+                        <AvailabilityHours
+                            navigator={this.props.navigator}
+                            tabLabel="Weekend"
+                            style={styles.hours}
+                            hours="weekend"/>
+                    </ScrollableTabView>
 
                     {showSettings ? <SettingsDialog
                         saveSettings={this.saveSettings}

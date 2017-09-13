@@ -80,6 +80,12 @@ export const addRange = (channel, period, range) => {
     }
 }
 
+export const setAppState = (value) => {
+    return {
+        type: ActionTypes.SET_APP_STATE,
+        value,
+    }
+}
 
 export const deleteRangeById = (id) => {
     return (dispatch, getState) => {
@@ -104,9 +110,14 @@ export const saveRangeForCurrent = (range) => {
         const {uiState} = getState(),
             {currentPlan, currentChannel} = uiState;
 
+        if (!range.end) {
+            delete range.end;
+        }
+
         dispatch(setRange(currentChannel, currentPlan, range.id, range));
     }
 }
+
 
 
 

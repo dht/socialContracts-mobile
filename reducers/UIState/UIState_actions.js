@@ -39,3 +39,19 @@ export const setCurrentRangeId = (value) => {
         value
     }
 }
+
+export const setContractId = (value) => {
+
+    return {
+        type: ActionTypes.SET_CONTRACT_ID,
+        value
+    }
+}
+
+export const setIsLoading = (value) => {
+
+    return {
+        type: ActionTypes.SET_IS_LOADING,
+        value
+    }
+}
