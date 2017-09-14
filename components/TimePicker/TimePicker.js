@@ -25,8 +25,6 @@ export default class TimePicker extends Component {
     componentWillReceiveProps(props) {
         const {value} = props;
 
-        console.log('componentWillReceiveProps value -> ', value);
-
         if (value !== this.state.value) {
             this.setState({
                 value,
@@ -48,8 +46,6 @@ export default class TimePicker extends Component {
         const {value} = this.state;
 
         const date = timeStringToDate(value);
-
-        console.log('value, data -> ', value, date);
 
         return (
             <TouchableOpacity onPress={this._showDateTimePicker}>

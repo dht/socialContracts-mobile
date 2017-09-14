@@ -36,14 +36,12 @@ export default class DashboardScreen extends Component {
     }
 
     closeModal() {
-        console.log('closeModal -> ', true);
         this.setState({
             showSettings: false,
         });
     }
 
     saveSettings(settings) {
-        console.log('settings -> ', settings);
         this.closeModal();
         this.props.saveSettings(settings);
     }
@@ -64,7 +62,10 @@ export default class DashboardScreen extends Component {
                     actionText="Share your availability"
                 >
 
-                    <ScrollableTabView onChangeTab={this.props.onChangeTab}>
+                    <ScrollableTabView onChangeTab={this.props.onChangeTab}
+                                       tabBarActiveTextColor="#333"
+                                       tabBarUnderlineStyle={{backgroundColor:'#333'}}
+                    >
                         <AvailabilityHours
                             navigator={this.props.navigator}
                             tabLabel="Weekday"

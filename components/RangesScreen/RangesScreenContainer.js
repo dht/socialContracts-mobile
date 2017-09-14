@@ -9,8 +9,6 @@ import {setInstructions, setCurrentRangeId,} from '../../reducers/UIState/UIStat
 
 const mapStateToProps = (state, ownProps) => {
 
-    console.log('true3 -> ', true);
-
     const {uiState} = state,
         {currentChannel, titleHeader} = uiState,
         ranges = getRanges(state) || {},

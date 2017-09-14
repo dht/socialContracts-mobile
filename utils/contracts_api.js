@@ -19,7 +19,7 @@ export const fetchContract = () => {
 
 export const saveContractName = (name) => {
     if(contractRef) {
-        contractRef.child('name').set(name);
+        contractRef.child('settings').child('name').set(name);
     }
 }
 

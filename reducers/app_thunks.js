@@ -21,19 +21,15 @@ export const loadApp = () => {
 
     // clear();
 
-
     return (dispatch, getState) => {
-        console.log('true -> ', api.currentUser());
         dispatch(setIsLoading(true));
 
         loginOrNewUser()
             .then(contractId => {
-                console.log('loadApp contractId -> ', contractId);
                 dispatch(setContractId(contractId));
                 configureContract(contractId);
                 return fetchContract()
                     .then(contract => {
-                        console.log('contract -> ', contract);
                         dispatch(setAppState(contract));
                         dispatch(setIsLoading(false));
                     })
@@ -46,19 +42,13 @@ export const createNewUser = () => {
         password = guid8(),
         contractId = guid8();
 
-    console.log('createNewUser -> ', username, password, contractId);
-
     return api.createUser(username, password)
         .then(user => {
-            console.log('user -> ', user);
-
             api.setUser(user.uid);
             configureContract(contractId);
 
             api.setPermissions(contractId, user.uid);
             api.addToUserLibrary(contractId);
-
-            console.log('current -> ', api.currentUser());
 
             return saveUser({
                 id: user.uid,
@@ -68,7 +58,6 @@ export const createNewUser = () => {
             })
         })
         .then(() => {
-            console.log('saving -> ', true);
             return saveContract(defaultAppState);
         })
         .then(() => {
@@ -87,10 +76,8 @@ export const loginOrNewUser = () => {
     return getUser()
         .then(user => {
             if (!user) {
-                console.log('createNewUser user -> ', user);
                 return createNewUser();
             } else {
-                console.log('login user -> ', user);
                 return login(user.username, user.password, user.contractId);
             }
 
@@ -102,8 +89,6 @@ export const saveContractAfterChange = () => {
 
         const {appState} = getState(),
             {plans, plansByDate, settings} = appState;
-
-        console.log('plans -> ', plans);
 
         saveContractPlans(plans || {});
         saveContractPlansByDate(plansByDate || {});
@@ -117,8 +102,6 @@ export const openContractInBrowser = () => {
 
         const {uiState} = getState(),
             {contractId} = uiState;
-
-        console.log('contractId -> ', contractId);
 
         let url = contractUrl(contractId);
 

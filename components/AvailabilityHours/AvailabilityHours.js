@@ -12,16 +12,12 @@ export default class AvailabilityHours extends Component {
         super(props);
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
-        console.log('props.hours -> ', props.hours);
-
         this.state = {
             dataSource: ds.cloneWithRows(props.hours),
         };
     }
 
     componentWillReceiveProps(props) {
-        console.log('props.hours -> ', props.hours);
-
         this.setState({
             dataSource: this.state.dataSource.cloneWithRows(props.hours)
         })
@@ -29,9 +25,6 @@ export default class AvailabilityHours extends Component {
     render() {
 
         // const isEmpty = this.state.dataSource.getRowCount() === 0;
-
-        // console.log('isEmpty -> ', isEmpty);
-
 
         return (
             <View style={styles.container}>

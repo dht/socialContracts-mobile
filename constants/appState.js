@@ -26,7 +26,7 @@ export const defaultAppState = {
     },
     settings: {
         name: '',
-        timezone: 'US',
+        timezone: 'IL',
         defaultLanguage: 'en',
         day: {start: '8:00', end: '18:00'}
     },
@@ -58,7 +58,7 @@ export const emptyAppState = {
     },
     settings: {
         name: '',
-        timezone: 'US',
+        timezone: 'IL',
         defaultLanguage: 'en',
         day: {start: '8:00', end: '18:00'}
     },

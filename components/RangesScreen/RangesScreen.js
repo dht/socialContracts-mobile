@@ -15,8 +15,6 @@ export default class RangesScreen extends Component {
         super(props);
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
-        console.log('props.ranges -> ', props.ranges);
-
         this.state = {
             dataSource: ds.cloneWithRows(props.ranges),
         };

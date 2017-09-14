@@ -6,8 +6,6 @@ import routes from '../../constants/routes';
 
 const mapStateToProps = (state, ownProps) => {
 
-    console.log('true5 -> ', true);
-
     const {appState, uiState} = state,
         {plans} = appState,
         {isLoading} = uiState,
@@ -41,7 +39,6 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onRowClick: (rowData) => {
-            console.log('rowData -> ', rowData, ownProps);
             dispatch(setTitlebarHeader(`${rowData.channel} (${ownProps.hours})`));
             dispatch(setCurrentChannel(rowData.channel));
             ownProps.navigator.push(routes.RANGES);
