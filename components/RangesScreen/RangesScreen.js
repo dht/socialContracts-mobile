@@ -42,6 +42,8 @@ export default class RangesScreen extends Component {
                     rightIcon="add"
                     onRightClick={() => this.props.addRange(currentChannel, newId)}
                     actionText={addVerbText}
+                    bigIcon="add"
+                    onBigClick={() => this.props.addRange(currentChannel, newId)}
                 >
 
                      <ListHeader title={listHeader} />

@@ -1,54 +1,24 @@
 import React, {Component} from 'react';
 import {
     StyleSheet,
-    ListView,
-    View
+    Text,
+    View,
+    TextInput,
 } from 'react-native';
 
-import SettingsDialog from '../SettingsDialog/SettingsDialogContainer';
+import RootModal from '../Modals/RootModalContainer';
 
-import ScrollableTabView from 'react-native-scrollable-tab-view';
+import Box from '../Box/Box';
 
-import AvailabilityHours from '../AvailabilityHours/AvailabilityHoursContainer';
 import Screen from '../Screen/Screen';
 
 export default class DashboardScreen extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            showSettings: false,
-        };
-
-        this.showSettingsModal = this.showSettingsModal.bind(this);
-        this.saveSettings = this.saveSettings.bind(this);
-        this.closeModal = this.closeModal.bind(this);
-    }
-
-    componentDidMount() {
-        this.props.loadApp();
-    }
-
-    showSettingsModal() {
-        this.setState({
-            showSettings: true
-        });
-    }
-
-    closeModal() {
-        this.setState({
-            showSettings: false,
-        });
-    }
-
-    saveSettings(settings) {
-        this.closeModal();
-        this.props.saveSettings(settings);
     }
 
     render() {
-        const {isLoading} = this.props;
-        const {showSettings} = this.state;
+        const {url, availabilityString} = this.props;
 
         return (
 
@@ -56,34 +26,25 @@ export default class DashboardScreen extends Component {
                 <Screen
                     title="Your availability"
                     leftIcon="settings"
-                    onLeftClick={this.showSettingsModal}
+                    onLeftClick={this.props.showSettingsModal}
                     rightIcon="share"
-                    onRightClick={this.props.openLink}
-                    actionText="Share your availability"
+                    onRightClick={this.props.share}
+                    bigIcon="edit"
+                    actionText="Edit your availability"
+                    onBigClick={this.props.editAvailability}
                 >
-
-                    <ScrollableTabView onChangeTab={this.props.onChangeTab}
-                                       tabBarActiveTextColor="#333"
-                                       tabBarUnderlineStyle={{backgroundColor:'#333'}}
-                    >
-                        <AvailabilityHours
-                            navigator={this.props.navigator}
-                            tabLabel="Weekday"
-                            style={styles.hours}
-                            hours="weekday"/>
-                        <AvailabilityHours
-                            navigator={this.props.navigator}
-                            tabLabel="Weekend"
-                            style={styles.hours}
-                            hours="weekend"/>
-                    </ScrollableTabView>
-
-                    {showSettings ? <SettingsDialog
-                        saveSettings={this.saveSettings}
-                        closeModal={this.closeModal}
-                    /> : null}
-
+                    <View style={styles.content}>
+                        <Text style={styles.topText}>What your contacts see right now:</Text>
+                        <Box availability={availabilityString}/>
+                        <Text style={styles.linkLabel}>Your unique link:</Text>
+                        <TextInput
+                            style={styles.input}
+                            value={url}
+                        />
+                    </View>
                 </Screen>
+
+                <RootModal />
             </View>
         );
     }
@@ -96,13 +57,24 @@ const styles = StyleSheet.create({
         alignItems: 'stretch',
         backgroundColor: '#F5FCFF',
     },
-    tabs: {
-        flex: 1,
+    content: {
+        margin: 20,
     },
-    hours: {
-        flex: 1,
-    }
-
-
+    topText: {
+        marginBottom: 12,
+    },
+    linkLabel: {
+        marginTop: 20,
+        marginBottom: 5,
+    },
+    input: {
+        marginTop: 5,
+        height: 40,
+        fontSize: 14,
+        paddingVertical: 3,
+        paddingHorizontal: 8,
+        borderColor: 'gray',
+        borderWidth: 1
+    },
 });
 

@@ -87,6 +87,13 @@ export const setAppState = (value) => {
     }
 }
 
+export const setAvailabilityString = (value) => {
+    return {
+        type: ActionTypes.SET_AVAILABILITY_STRING,
+        value,
+    }
+}
+
 export const deleteRangeById = (id) => {
     return (dispatch, getState) => {
         const {uiState} = getState(),

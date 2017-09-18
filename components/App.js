@@ -1,24 +1,12 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-import {Provider} from 'react-redux'
-
-import store from '../store';
-
 import React, {Component} from 'react';
-import {
-    AppRegistry,
-} from 'react-native';
 
 import {Navigator} from 'react-native-deprecated-custom-components';
 import routes from '../constants/routes';
 
 import DashboardScreen from '../components/DashboardScreen/DashboardScreenContainer';
+import EditAvailabilityScreen from '../components/EditAvailabilityScreen/EditAvailabilityScreenContainer';
 import RangesScreen from '../components/RangesScreen/RangesScreenContainer';
 import EditRangeScreen from '../components/EditRangeScreen/EditRangeScreenContainer';
-
 
 export default class App extends Component {
 
@@ -26,25 +14,30 @@ export default class App extends Component {
         super();
     }
 
+    componentDidMount() {
+        this.props.loadApp();
+    }
+
     renderScene(route, navigator) {
         switch (route.index) {
-            case 0:
+            case routes.DASHBOARD.index:
                 return <DashboardScreen navigator={navigator} />
-            case 1:
+            case routes.EDIT_AVAILABILITY.index:
+                return <EditAvailabilityScreen navigator={navigator} />
+            case routes.RANGES.index:
                 return <RangesScreen navigator={navigator} />
-            case 2:
+            case routes.EDIT_RANGE.index:
                 return <EditRangeScreen subtitle="change the time range for facebook availability" navigator={navigator} />
         }
     }
 
     render() {
         return (
-            <Provider store={store}>
                 <Navigator
                     initialRoute={routes.DASHBOARD}
                     renderScene={this.renderScene}
                 />
-            </Provider>
+
         );
     }
 }

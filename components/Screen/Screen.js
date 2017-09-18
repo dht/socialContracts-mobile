@@ -28,12 +28,12 @@ export default class Screen extends Component {
                     {this.props.children}
                 </View>
 
-                <View style={styles.cta}>
+                {this.props.actionText ? <View style={styles.cta}>
                     <BigButton
-                        icon={this.props.rightIcon}
-                        onClick={this.props.onRightClick}
-                        title={this.props.actionText} />
-                </View>
+                        icon={this.props.bigIcon}
+                        onClick={this.props.onBigClick}
+                        title={this.props.actionText}/>
+                </View> : null}
             </View>
         );
     }
@@ -47,13 +47,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#F5FCFF',
     },
     content: {
-        flex:1,
+        flex: 1,
     },
     cta: {
-        alignItems:'stretch',
-        height:80,
-        borderTopWidth:1,
-        borderTopColor:'#999',
+        alignItems: 'stretch',
+        height: 80,
+        borderTopWidth: 1,
+        borderTopColor: '#999',
     }
 
 

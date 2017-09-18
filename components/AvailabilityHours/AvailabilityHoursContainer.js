@@ -4,32 +4,32 @@ import {hoursToList} from '../../utils/ranges';
 import {setCurrentChannel, setTitlebarHeader} from '../../reducers/UIState/UIState_actions';
 import routes from '../../constants/routes';
 
-const mapStateToProps = (state, ownProps) => {
-
+const getHours = (state, ownProps) => {
     const {appState, uiState} = state,
         {plans} = appState,
         {isLoading} = uiState,
         {weekday, weekend} = plans;
 
-    let hours;
+    if (isLoading) {
+        return false;
+    }
 
     switch (ownProps.hours) {
         case 'weekday':
-            hours = hoursToList(weekday);
-            break;
+            return hoursToList(weekday);
         case 'weekend':
-            hours = hoursToList(weekend);
-            break;
+            return hoursToList(weekend);
     }
+}
 
-    if (isLoading) {
-        hours = [
-            {channel:'phone', text:'loading...',},
-            {channel:'whatsapp', text:'loading...',},
-            {channel:'email', text:'loading...',},
-            {channel:'facebook', text:'loading...',},
-        ]
-    }
+const mapStateToProps = (state, ownProps) => {
+
+    let hours = getHours(state, ownProps) || [
+        {channel:'phone', text:'loading...',},
+        {channel:'whatsapp', text:'loading...',},
+        {channel:'email', text:'loading...',},
+        {channel:'facebook', text:'loading...',},
+    ]
 
     return {
         hours,

@@ -79,10 +79,6 @@ export const timeStringToDate = (time) => {
    }
 }
 
-const leadingZero = (number) => {
-    return number >= 10 ? number : '0' + number;
-}
-
 export const dateToTimeString = (date) => {
    return date.getHours() + ':' + leadingZero(date.getMinutes());
 }
@@ -136,4 +132,86 @@ export const newValueForChannel = (channel) => {
 export const nextId = (state) => {
     const ranges = getRanges(state) || {};
     return getMaxId(ranges) + 1;
+}
+
+// {start: '10:00', end: '18:00'}
+export const rangeToRangeArray = (range) => {
+    let output = [];
+
+    output.push(timeStringToNumber(range.start));
+
+    if (range.end) {
+        output.push(timeStringToNumber(range.end));
+    }
+
+    return output;
+}
+
+
+const leadingZero = (number) => {
+    return number >= 10 ? number : '0' + number;
+}
+
+export const timeStringToNumber = (time) => {
+    let output;
+
+    try {
+        const timeParts = time.split(':'),
+            hours = parseInt(timeParts[0]),
+            minutes = parseInt(timeParts[1]);
+
+        output = hours + (minutes / 60);
+
+    } catch (e) {
+
+    }
+
+    return output;
+}
+
+export const numberToTimeString = (time, hours24 = false) => {
+    let output = '';
+
+    try {
+        const hours = Math.floor(time),
+            minutes = leadingZero(Math.floor((time - hours) * 60)),
+            isPM = hours >= 12;
+
+        if (hours24) {
+            output = hours + ':' + minutes;
+        } else {
+            output = (hours > 12 ? hours - 12 : hours) + ':' + minutes + (isPM ? 'pm' : 'am');
+        }
+    } catch (e) {
+
+    }
+
+    return output;
+}
+
+// {r1: {start: '10:00', end: '18:00'}, r2: {start: '19:00', end: '20:00'}}
+export const rangesToRangesArray = (ranges) => {
+    return Object.keys(ranges).map(key => {
+        return rangeToRangeArray(ranges[key]);
+    });
+}
+
+const deltaForChecking = 0.25;
+
+// -1 = past, 0 = now, 1 = future
+export const timePositionOfRangeArray = (rangeArray, currentTimeNumber) => {
+    const start = rangeArray[0],
+        end = rangeArray.length >= 2 ?rangeArray[1] :  start + deltaForChecking;
+
+    if (currentTimeNumber > end) {
+        return -1;
+    }
+
+    if (currentTimeNumber >= start && currentTimeNumber <= end) {
+        return 0;
+    }
+
+    if (currentTimeNumber < start) {
+        return 1;
+    }
 }

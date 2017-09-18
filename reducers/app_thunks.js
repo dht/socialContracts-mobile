@@ -1,4 +1,4 @@
-import {getUser, saveUser, clear} from '../utils/storage'
+import {getUser, saveUser, getOnBoardingPlayed, saveOnBoardingPlayed, clear} from '../utils/storage'
 import api from '../utils/login_api';
 import {
     configureContract,
@@ -8,10 +8,12 @@ import {
     saveContractPlans,
     saveContractPlansByDate
 } from '../utils/contracts_api';
-import {setAppState} from '../reducers/appState/appState_actions'
+import {setAppState, setAvailabilityString} from '../reducers/appState/appState_actions'
 import {setContractId, setIsLoading} from '../reducers/UIState/UIState_actions'
+import {showModal, modalTypes} from '../reducers/modal/modal_actions'
 import {guid8} from '../utils/guid'
 import {contractUrl} from '../constants/Config'
+import {contractToText} from '../utils/contracts'
 
 import {Linking} from 'react-native'
 
@@ -32,8 +34,29 @@ export const loadApp = () => {
                     .then(contract => {
                         dispatch(setAppState(contract));
                         dispatch(setIsLoading(false));
+                        dispatch(refreshAvailabilityString(contract));
                     })
+            });
+
+        getOnBoardingPlayed()
+            .then(played => {
+                if (!played || played) {
+                    dispatch(showModal(modalTypes.ONBOARDING_MODAL));
+                    saveOnBoardingPlayed(true);
+                }
             })
+
+
+    }
+}
+
+export const refreshAvailabilityString = (contract) => {
+    return (dispatch, getState) => {
+
+        contract = contract || getState().appState;
+        const availabilityString = contractToText(contract, 'en', true);
+
+        dispatch(setAvailabilityString(availabilityString));
     }
 }
 

@@ -1,8 +1,8 @@
 import {ActionTypes} from '../reducers/appState/appState';
-import {saveContractAfterChange} from '../reducers/app_thunks';
+import {saveContractAfterChange, refreshAvailabilityString} from '../reducers/app_thunks';
 
 const acceptActions = Object.keys(ActionTypes);
-const ignoreActions = [ActionTypes.SET_APP_STATE, ];
+const ignoreActions = [ActionTypes.SET_APP_STATE, ActionTypes.SET_AVAILABILITY_STRING];
 
 const autosave = store => next => action => {
 
@@ -13,6 +13,7 @@ const autosave = store => next => action => {
 		ignoreActions.indexOf(action.type) === -1) {
 
 		store.dispatch(saveContractAfterChange());
+		store.dispatch(refreshAvailabilityString());
 	}
 
 	return result

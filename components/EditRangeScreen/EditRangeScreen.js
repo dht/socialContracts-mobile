@@ -83,6 +83,8 @@ export default class EditRangeScreen extends Component {
                     onLeftClick={this.props.navigator.pop}
                     rightIcon="done"
                     onRightClick={() => this.props.saveRange({id, start, end})}
+                    bigIcon="done"
+                    onBigClick={() => this.props.saveRange({id, start, end})}
                     actionText={action}
                 >
 

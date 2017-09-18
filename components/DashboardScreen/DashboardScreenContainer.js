@@ -1,34 +1,52 @@
-import {connect} from 'react-redux'
-import DashboardScreen from './DashboardScreen'
+import {connect} from 'react-redux';
+import {Share} from 'react-native';
+import DashboardScreen from './DashboardScreen';
 
-import {loadApp, openContractInBrowser} from '../../reducers/app_thunks';
 import {setName} from '../../reducers/appState/appState_actions';
-import {setCurrentPlanType} from '../../reducers/UIState/UIState_actions';
+
+import {contractUrl} from '../../constants/Config'
+import routes from '../../constants/routes'
+
+import {showModal, closeModal, modalTypes} from '../../reducers/modal/modal_actions'
 
 const mapStateToProps = (state, ownProps) => {
-    const {uiState} = state,
-        {isLoading} = uiState;
+    const {uiState, appState} = state,
+        {contractId, isLoading} = uiState,
+        {availabilityString} = appState;
+
+    let url = contractUrl(contractId);
 
     return {
-        isLoading
+        isLoading,
+        availabilityString,
+        url,
     };
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        loadApp: () => {
-            dispatch(loadApp());
-        },
-        openLink:()=> {
-            dispatch(openContractInBrowser());
-        },
-        saveSettings: (settings) => {
-            dispatch(setName(settings.name))
-        },
-        onChangeTab: ({i}) => {
-            dispatch(setCurrentPlanType(i === 0 ? 'weekday' : 'weekend'));
-        }
+        share: () => {
+            Share.share({
+                    message: 'A link to my availability box',
+                    url: 'https://socialcontracts.io/#/e8b82d3a',
+                    title: 'Share your availability',
 
+                },
+                {
+                    dialogTitle: 'Share your availability'
+                })
+        },
+        editAvailability: () => {
+            ownProps.navigator.push(routes.EDIT_AVAILABILITY);
+        },
+        showSettingsModal: () => {
+            dispatch(showModal(modalTypes.SETTINGS_MODAL, {
+                saveSettings: (settings) => {
+                    dispatch(setName(settings.name))
+                    dispatch(closeModal())
+                }
+            }))
+        }
     }
 }
 

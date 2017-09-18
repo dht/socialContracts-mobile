@@ -17,6 +17,7 @@ export const ActionTypes = {
     ADD_RANGE_FOR_DATE: 'ADD_RANGE_FOR_DATE',
     SET_RANGE_FOR_DATE: 'SET_RANGE_FOR_DATE',
     REMOVE_RANGE_FOR_DATE: 'REMOVE_RANGE_FOR_DATE',
+    SET_AVAILABILITY_STRING: 'SET_AVAILABILITY_STRING',
 };
 
 
@@ -241,6 +242,11 @@ const appState = (state = initialState, action) => {
             return {
                 ...state,
                 plansByDate: plansByDate(state.plansByDate, action)
+            }
+        case ActionTypes.SET_AVAILABILITY_STRING:
+            return {
+                ...state,
+                availabilityString: action.value
             }
 
         default:
