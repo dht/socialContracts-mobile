@@ -1,0 +1,58 @@
+import React, {Component} from 'react';
+import {
+    StyleSheet,
+    Text,
+    View,
+    TouchableHighlight,
+    Clipboard,
+} from 'react-native';
+
+export default class CopyInput extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            showMessage: false
+        }
+
+        this.copyToClipboard = this.copyToClipboard.bind(this);
+    }
+
+    copyToClipboard() {
+        Clipboard.setString(this.props.text);
+        this.setState({showMessage: true});
+    }
+
+    render() {
+        const {showMessage} = this.state;
+
+        return (
+            <View style={styles.container}>
+                <TouchableHighlight
+                    underlayColor="#eeeeee"
+                    onPress={this.copyToClipboard}>
+                    <Text style={styles.text}>{this.props.text}</Text>
+                </TouchableHighlight>
+                {showMessage ? <Text style={styles.clipboard}>Link copied to clipboard</Text> : null}
+            </View>
+        );
+    }
+}
+
+const styles = StyleSheet.create({
+    container: {},
+    text: {
+        marginTop: 5,
+        fontSize: 14,
+        paddingVertical: 10,
+        paddingHorizontal: 8,
+        borderColor: 'gray',
+        borderWidth: 1
+    },
+    clipboard: {
+        marginTop: 7,
+        fontSize: 12,
+        color: 'gray',
+    },
+});
+

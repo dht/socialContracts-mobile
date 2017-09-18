@@ -3,10 +3,10 @@ import {
     StyleSheet,
     Text,
     View,
-    TextInput,
 } from 'react-native';
 
 import RootModal from '../Modals/RootModalContainer';
+import CopyInput from '../CopyInput/CopyInput';
 
 import Box from '../Box/Box';
 
@@ -37,10 +37,7 @@ export default class DashboardScreen extends Component {
                         <Text style={styles.topText}>What your contacts see right now:</Text>
                         <Box availability={availabilityString}/>
                         <Text style={styles.linkLabel}>Your unique link:</Text>
-                        <TextInput
-                            style={styles.input}
-                            value={url}
-                        />
+                        <CopyInput text={url} />
                     </View>
                 </Screen>
 
