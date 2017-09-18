@@ -8,7 +8,7 @@ const getHours = (state, ownProps) => {
     const {appState, uiState} = state,
         {plans} = appState,
         {isLoading} = uiState,
-        {weekday, weekend} = plans;
+        {weekday, weekend} = plans || {};
 
     if (isLoading) {
         return false;

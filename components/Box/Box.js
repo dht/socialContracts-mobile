@@ -23,8 +23,8 @@ export default class Box extends Component {
             <View style={styles.container}>
                 <BoxRow channel="phone" text={availability['phone']} />
                 <BoxRow channel="whatsapp" text={availability['whatsapp']} />
-                <BoxRow channel="facebook" text={availability['facebook']} />
                 <BoxRow channel="email" text={availability['email']} />
+                <BoxRow channel="facebook" text={availability['facebook']} />
             </View>
         );
     }

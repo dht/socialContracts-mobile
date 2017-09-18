@@ -9,7 +9,7 @@ export const rangeToText = (range) => {
     return range.end ? `${range.start}-${range.end}` : `${range.start}`;
 }
 
-export const rangesToText = (ranges) => {
+export const rangesToText = (ranges = []) => {
     return Object.keys(ranges).reduce((output, key) => {
 
         const range = ranges[key];
@@ -29,11 +29,11 @@ export const rangesToText = (ranges) => {
  }
  */
 
-export const hoursToList = (a_hours) => {
+export const hoursToList = (a_hours = {}) => {
     // future: Object.keys(a_hours)
     // for better sorting
     return ['phone', 'whatsapp', 'email', 'facebook'].reduce((output, channel) => {
-        const ranges = a_hours[channel],
+        const ranges = a_hours[channel] || {},
             text = rangesToText(ranges || {});
 
         output.push({
@@ -101,8 +101,8 @@ export const getRanges = (state) => {
 
     const {appState, uiState} = state,
         {currentPlan, currentChannel} = uiState,
-        {plans} = appState,
-        ranges = plans[currentPlan][currentChannel];
+        {plans = {}} = appState,
+        ranges = (plans[currentPlan] || {})[currentChannel];
 
         return ranges;
 }
@@ -190,7 +190,7 @@ export const numberToTimeString = (time, hours24 = false) => {
 }
 
 // {r1: {start: '10:00', end: '18:00'}, r2: {start: '19:00', end: '20:00'}}
-export const rangesToRangesArray = (ranges) => {
+export const rangesToRangesArray = (ranges = []) => {
     return Object.keys(ranges).map(key => {
         return rangeToRangeArray(ranges[key]);
     });

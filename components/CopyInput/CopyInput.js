@@ -21,6 +21,10 @@ export default class CopyInput extends Component {
     copyToClipboard() {
         Clipboard.setString(this.props.text);
         this.setState({showMessage: true});
+
+        setTimeout(() => {
+            this.setState({showMessage: false});
+        }, 3000);
     }
 
     render() {

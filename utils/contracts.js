@@ -32,7 +32,7 @@ export const getPlanForDay = (contract, daysDelta) => {
 
     const isWeekday = weekdays[(now.day + daysDelta) % 7],
         period = isWeekday ? 'weekday' : 'weekend',
-        plan = contract['plans'][period],
+        plan = (contract['plans']||{})[period],
         planByDate = getPlanForDate(contract, daysDelta);
 
     return planByDate ? planByDate : plan;
@@ -43,7 +43,7 @@ export const channelToAR = (contract, days, channel) => {
     let output = {};
 
     for (let day = 0; day <= days; day++) {
-        const plan = getPlanForDay(contract, day),
+        const plan = getPlanForDay(contract, day) || {},
             ranges = plan[channel];
 
         output[`d${day}`] = rangesToRangesArray(ranges);
@@ -100,9 +100,9 @@ export const findFirstRelevantRange = (rangesArraysPerDay) => {
         found = false,
         output;
 
-    while (day < 14 && !found) {
+    while (day < 14 && !found && rangesArraysPerDay) {
         const d = `d${day}`,
-            rangesArrays = rangesArraysPerDay[d],
+            rangesArrays = rangesArraysPerDay[d] || [],
             exists = rangesArrays.length > 0;
 
         sortRangesArrays(rangesArrays);
@@ -165,7 +165,7 @@ export const dayToText = (daysDelta) => {
     }
 }
 
-export const rangeArrayToText = (currentTimeNumber, nextAvailability, isRange, language, hours24) => {
+export const rangeArrayToText = (currentTimeNumber, nextAvailability = {}, isRange, language, hours24) => {
 
     setLanguage(language);
     str = strings();
