@@ -1,7 +1,7 @@
 export const listHeaders = {
     emptyTimeRanges: 'No time ranges - no availability',
     emptyTimes: 'No check times - no availability',
-    ranges: 'I will be available during those time ranges:',
+    ranges: 'I will be available during these time ranges:',
     times: 'I will check my [X] at:'
 }
 

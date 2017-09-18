@@ -27,7 +27,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         share: () => {
             Share.share({
-                    message: 'A link to my availability box',
+                    message: 'A link to my availability box:',
                     url: 'https://socialcontracts.io/#/e8b82d3a',
                     title: 'Share your availability',
 

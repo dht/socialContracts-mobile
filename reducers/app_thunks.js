@@ -40,7 +40,7 @@ export const loadApp = () => {
 
         getOnBoardingPlayed()
             .then(played => {
-                if (!played || played) {
+                if (!played) {
                     dispatch(showModal(modalTypes.ONBOARDING_MODAL));
                     saveOnBoardingPlayed(true);
                 }
