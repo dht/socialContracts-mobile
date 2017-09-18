@@ -16,6 +16,7 @@ import {contractUrl} from '../constants/Config'
 import {contractToText} from '../utils/contracts'
 
 import {Linking} from 'react-native'
+import {Share} from 'react-native';
 
 import {defaultAppState} from '../constants/appState';
 
@@ -129,6 +130,28 @@ export const openContractInBrowser = () => {
         let url = contractUrl(contractId);
 
         Linking.openURL(url).catch(err => console.error('An error occurred', err));
+    }
+
+}
+
+export const shareContract = () => {
+
+    return (dispatch, getState) => {
+
+        const {uiState} = getState(),
+            {contractId} = uiState;
+
+        let url = contractUrl(contractId);
+
+        Share.share({
+                url,
+                message: 'A link to my availability box:',
+                title: 'Share your availability',
+
+            },
+            {
+                dialogTitle: 'Share your availability'
+            })
     }
 
 }

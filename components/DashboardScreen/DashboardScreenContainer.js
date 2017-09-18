@@ -1,8 +1,8 @@
 import {connect} from 'react-redux';
-import {Share} from 'react-native';
 import DashboardScreen from './DashboardScreen';
 
 import {setName} from '../../reducers/appState/appState_actions';
+import {shareContract} from '../../reducers/app_thunks';
 
 import {contractUrl} from '../../constants/Config'
 import routes from '../../constants/routes'
@@ -26,15 +26,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         share: () => {
-            Share.share({
-                    message: 'A link to my availability box:',
-                    url: 'https://socialcontracts.io/#/e8b82d3a',
-                    title: 'Share your availability',
-
-                },
-                {
-                    dialogTitle: 'Share your availability'
-                })
+          dispatch(shareContract());
         },
         editAvailability: () => {
             ownProps.navigator.push(routes.EDIT_AVAILABILITY);
