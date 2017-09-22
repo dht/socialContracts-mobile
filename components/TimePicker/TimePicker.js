@@ -71,7 +71,8 @@ const styles = StyleSheet.create({
     container: {
         width: 100,
         backgroundColor: '#f0f0f0',
-        borderRadius: 12,
+        borderRadius: 15,
+        height:40,
     },
     text: {
         fontSize: 22,
@@ -79,6 +80,8 @@ const styles = StyleSheet.create({
         lineHeight: 22,
         paddingVertical: 10,
         color: '#373F42',
+        backgroundColor:'transparent',
+
     }
 
 

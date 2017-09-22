@@ -33,7 +33,7 @@ export default class RangeRow extends Component {
 
         return (
             <TouchableHighlight
-                underlayColor="#eeeeee"
+                underlayColor="#999"
                 onPress={this.props.onClick}>
                 <View style={styles.container}>
                     <Text style={styles.hours}>{text || 'not available'}</Text>

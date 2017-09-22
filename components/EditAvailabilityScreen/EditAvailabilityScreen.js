@@ -12,6 +12,7 @@ import ScrollableTabView from 'react-native-scrollable-tab-view';
 import ListHeader from '../ListHeader/ListHeader';
 import AvailabilityHours from '../AvailabilityHours/AvailabilityHoursContainer';
 import Screen from '../Screen/Screen';
+import Titlebar from '../Titlebar/Titlebar';
 
 import routes from '../../constants/routes';
 
@@ -41,6 +42,7 @@ export default class EditAvailabilityScreen extends Component {
 
     renderDrilldown() {
         return <Navigator
+            style={styles.nav}
             initialRoute={routes.EDIT_AVAILABILITY}
             renderScene={this.renderDrilldownScene}
         />
@@ -58,12 +60,14 @@ export default class EditAvailabilityScreen extends Component {
             title = weekday ? 'Weekday availability' : 'Weekend availability';
 
         return <View style={styles.container}>
-            <Screen
+            <Titlebar
                 title={title}
-            >
-                <ListHeader title="Click to edit:"/>
+            />
+            <ListHeader title="Click to edit:"/>
+            <View style={styles.content}>
                 {this.renderAvailability(weekday, navigator)}
-            </Screen>
+            </View>
+
         </View>
     }
 
@@ -109,8 +113,14 @@ const styles = StyleSheet.create({
     },
     hours: {
         marginTop: 130,
+    },
+    nav: {
+        backgroundColor: 'green',
+    },
+    content: {
+        flex: 1,
+        position: 'relative',
+        top: -20,
     }
-
-
 });
 

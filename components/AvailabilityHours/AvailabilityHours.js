@@ -3,6 +3,7 @@ import {
     StyleSheet,
     ListView,
     View,
+    Text,
 } from 'react-native';
 
 import ChannelRow from './row/ChannelRow';
@@ -26,6 +27,7 @@ export default class AvailabilityHours extends Component {
     render() {
         return <ListView
             style={styles.list}
+            enableEmptySections={false}
             dataSource={this.state.dataSource}
             renderRow={(rowData) => <ChannelRow
                 data={rowData}

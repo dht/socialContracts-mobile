@@ -29,10 +29,6 @@ export default class OnboardingModal extends Component {
                         loop={false}
                 >
                     <View style={styles.slide1}>
-                        <Text style={styles.text}>Social Contract</Text>
-                        <Text style={styles.subtext}>Set your availability hours</Text>
-                    </View>
-                    <View style={styles.slide1}>
                         <Text style={styles.text}>Step 1</Text>
                         <Text style={styles.subtext}>Set availability hours</Text>
                         <Image style={styles.image1} source={require('../../../images/hours.jpg')}/>

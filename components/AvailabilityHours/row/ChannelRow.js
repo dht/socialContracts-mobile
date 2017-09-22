@@ -33,7 +33,7 @@ export default class ChannelRow extends Component {
 
         return (
             <TouchableHighlight
-                underlayColor="#eeeeee"
+                underlayColor="#999"
                 onPress={this.props.onClick}>
                 <View style={styles.container}>
                     <View style={styles.iconContainer}>

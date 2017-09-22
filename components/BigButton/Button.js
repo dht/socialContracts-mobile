@@ -29,11 +29,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         flexDirection: 'row',
-        backgroundColor: '#f5f5f5',
+        backgroundColor: '#007AFF',
         paddingHorizontal: 10,
         height: 60,
         width: 180,
-        borderColor: '#999',
+        borderColor: '#007AFF',
         borderWidth: 1,
         borderRadius: 5,
     },
@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize: 22,
         textAlign: 'center',
+        color:'white',
     }
 });
 

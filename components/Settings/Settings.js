@@ -5,6 +5,7 @@ import {
     StyleSheet,
     View,
     Text,
+    Keyboard,
     TextInput,
 } from 'react-native';
 
@@ -35,6 +36,7 @@ export default class Settings extends Component {
         const {name} = this.state;
 
         this.setState({showMessage: true});
+        Keyboard.dismiss();
 
         setTimeout(() => {
             this.setState({showMessage: false});
@@ -70,6 +72,7 @@ export default class Settings extends Component {
                 <View style={styles.innerContainer}>
                     <Text style={styles.label}>Your name:</Text>
                     <TextInput
+                        onSubmit={Keyboard.dismiss}
                         placeholder="Your first name"
                         style={styles.input}
                         onChangeText={(name) => this.setState({name})}
