@@ -13,7 +13,7 @@ export default class inTouch extends Component {
     render() {
         return (
             <Provider store={store}>
-                <App />
+                <App tabbar={true} />
             </Provider>
         );
     }

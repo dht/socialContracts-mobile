@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#F5FCFF',
         borderBottomWidth:1,
         borderBottomColor:'#999',
-
     },
     title: {
         flex:1,

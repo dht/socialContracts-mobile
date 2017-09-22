@@ -50,8 +50,9 @@ const styles = StyleSheet.create({
         fontSize: 14,
         paddingVertical: 10,
         paddingHorizontal: 8,
-        borderColor: 'gray',
-        borderWidth: 1
+        borderColor: '#a9a9a9',
+        borderWidth: 1,
+        borderRadius: 2,
     },
     clipboard: {
         marginTop: 7,

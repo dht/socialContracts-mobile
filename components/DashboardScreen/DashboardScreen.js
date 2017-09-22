@@ -18,20 +18,28 @@ export default class DashboardScreen extends Component {
     }
 
     render() {
-        const {url, availabilityString} = this.props;
+        const {url, availabilityString, tabbar} = this.props;
+
+        let props = {};
+
+        if (!tabbar) {
+            props = {
+                leftIcon:"settings",
+                onLeftClick:this.props.showSettingsModal,
+                bigIcon:"edit",
+                actionText:"Edit your availability",
+                onBigClick:this.props.editAvailability,
+            };
+        }
 
         return (
 
             <View style={styles.container}>
                 <Screen
                     title="Your availability"
-                    leftIcon="settings"
-                    onLeftClick={this.props.showSettingsModal}
                     rightIcon="share"
                     onRightClick={this.props.share}
-                    bigIcon="edit"
-                    actionText="Edit your availability"
-                    onBigClick={this.props.editAvailability}
+                    {...props}
                 >
                     <View style={styles.content}>
                         <Text style={styles.topText}>What your contacts see right now:</Text>

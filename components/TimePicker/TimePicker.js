@@ -70,9 +70,8 @@ export default class TimePicker extends Component {
 const styles = StyleSheet.create({
     container: {
         width: 100,
-        borderWidth: 1,
-        borderColor: '#aaa',
-        borderRadius: 2,
+        backgroundColor: '#f0f0f0',
+        borderRadius: 12,
     },
     text: {
         fontSize: 22,

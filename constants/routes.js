@@ -4,3 +4,4 @@ export default {
     RANGES: {title: 'Ranges', index: 2},
     EDIT_RANGE: {title: 'EditRange', index: 3},
 }
+

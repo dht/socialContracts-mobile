@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import SettingsModal from './SettingsModal'
+import Settings from './Settings'
 
 const mapStateToProps = (state, ownProps) => {
     const {appState} = state,
@@ -19,4 +19,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(SettingsModal)
+)(Settings)

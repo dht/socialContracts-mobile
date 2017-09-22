@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {
     StyleSheet,
     ListView,
-    View
+    View,
+    Text,
 } from 'react-native';
 
 
@@ -29,24 +30,39 @@ export default class RangesScreen extends Component {
         })
     }
 
+    renderEmpty() {
+        return <Text style={styles.empty}>Empty list. Add new item</Text>;
+    }
+
     render() {
-        const {currentChannel, listHeader, addVerbText, titleHeader, newId} = this.props;
+        const {currentChannel, listHeader, addVerbText, titleHeader, newId, tabbar} = this.props;
+        const isEmpty = this.state.dataSource.getRowCount() === 0;
+
+        let props = {};
+
+        if (!tabbar) {
+            props = {
+                actionText:addVerbText,
+                bigIcon:"add",
+                onBigClick:() => this.props.addRange(currentChannel, newId)
+            }
+        }
 
         return (
 
             <View style={styles.container}>
                 <Screen
                     title={titleHeader}
-                    leftIcon="keyboard-arrow-left"
+                    leftIcon="arrow-back"
                     onLeftClick={this.props.pop}
                     rightIcon="add"
                     onRightClick={() => this.props.addRange(currentChannel, newId)}
-                    actionText={addVerbText}
-                    bigIcon="add"
-                    onBigClick={() => this.props.addRange(currentChannel, newId)}
+                    {...props}
                 >
 
                      <ListHeader title={listHeader} />
+
+                    { isEmpty ? this.renderEmpty() : null}
 
                     <ListView
                         enableEmptySections={true}
@@ -77,8 +93,13 @@ const styles = StyleSheet.create({
     },
     hours: {
         flex:1,
+    },
+    empty: {
+        color:'gray',
+        paddingVertical:30,
+        paddingHorizontal:20,
+        textAlign:'center',
+        fontSize:14,
     }
-
-
 });
 

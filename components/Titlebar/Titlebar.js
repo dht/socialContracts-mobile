@@ -6,6 +6,9 @@ import {
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {getTheme} from '../../constants/themes';
+
+let colors = getTheme();
 
 export default class Titlebar extends Component {
 
@@ -17,7 +20,7 @@ export default class Titlebar extends Component {
             return null;
         }
 
-        return <Icon.Button onPress={action} name={icon} underlayColor="#eeeeee" color="#333" backgroundColor="transparent">
+        return <Icon.Button onPress={action} name={icon} underlayColor="#eeeeee" color={colors['titlebar_action']} backgroundColor="transparent">
         </Icon.Button>
 
     }
@@ -44,11 +47,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         flexDirection: 'row',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: colors['titlebar_bk'],
         height: 50,
         marginTop:20,
         marginBottom:5,
-        borderBottomColor:'#999',
+        borderBottomColor:colors['titlebar_bottom_border'],
         borderBottomWidth:1,
     },
     action: {
@@ -58,6 +61,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: 'center',
         margin: 10,
+        color: colors['titlebar_text'],
     },
 
 });

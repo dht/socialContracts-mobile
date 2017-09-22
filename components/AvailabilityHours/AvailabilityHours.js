@@ -22,42 +22,23 @@ export default class AvailabilityHours extends Component {
             dataSource: this.state.dataSource.cloneWithRows(props.hours)
         })
     }
+
     render() {
+        return <ListView
+            style={styles.list}
+            dataSource={this.state.dataSource}
+            renderRow={(rowData) => <ChannelRow
+                data={rowData}
+                onClick={() => this.props.onRowClick(rowData)}
+            />}
+        />;
 
-        // const isEmpty = this.state.dataSource.getRowCount() === 0;
-
-        return (
-            <View style={styles.container}>
-                <ListView
-                    enableEmptySections={true}
-                    style={styles.list}
-                    dataSource={this.state.dataSource}
-                    renderRow={(rowData) => <ChannelRow
-                        data={rowData}
-                        onClick={() => this.props.onRowClick(rowData)}
-                    />}
-                />
-
-            </View>
-        );
     }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'stretch',
-        backgroundColor: '#F5FCFF',
-        borderColor:'green',
-    },
     list: {
-        flex: 1,
-    },
-    header: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
+        flex:1,
     },
     emptyText: {
         textAlign: 'center',
@@ -65,7 +46,7 @@ const styles = StyleSheet.create({
         padding: 30,
     },
     cancel: {
-        color:'#333',
+        color: '#333',
     }
 
 });

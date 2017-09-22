@@ -1,7 +1,7 @@
 import React from 'react'
 import {modalTypes} from '../../reducers/modal/modal_actions';
 
-import SettingsModal from './Settings/SettingsModalContainer'
+import SettingsModal from './Settings/SettingsModal'
 import OnboardingModal from './OnBoarding/OnboardingModal'
 
 const MODAL_COMPONENTS = (modalType) => {

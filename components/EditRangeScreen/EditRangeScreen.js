@@ -68,24 +68,32 @@ export default class EditRangeScreen extends Component {
     }
 
     render() {
-        const {titleHeader, instructions} = this.props;
+        const {titleHeader, instructions, tabbar} = this.props;
         const {id, start, end, isRange} = this.state;
         const noun = isRange ? 'time range' : 'time',
             action = `Save ${noun}`,
             fromLabel = isRange ? 'From' : 'At';
+
+        let props = {};
+
+        if (!tabbar) {
+            props = {
+                bigIcon: "done",
+                onBigClick: () => this.props.saveRange({id, start, end}),
+                actionText: action
+            }
+        }
 
         return (
 
             <View style={styles.container}>
                 <Screen
                     title={titleHeader}
-                    leftIcon="keyboard-arrow-left"
+                    leftIcon="arrow-back"
                     onLeftClick={this.props.navigator.pop}
                     rightIcon="done"
                     onRightClick={() => this.props.saveRange({id, start, end})}
-                    bigIcon="done"
-                    onBigClick={() => this.props.saveRange({id, start, end})}
-                    actionText={action}
+                    {...props}
                 >
 
                     <ListHeader title={instructions}/>
@@ -103,24 +111,25 @@ export default class EditRangeScreen extends Component {
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'stretch',
-        backgroundColor: '#F5FCFF',
-    },
-    row: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'row',
-    },
-    text: {
-        fontSize: 22,
-        paddingHorizontal: 6,
-    }
+const
+    styles = StyleSheet.create({
+        container: {
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'stretch',
+            backgroundColor: '#F5FCFF',
+        },
+        row: {
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'row',
+        },
+        text: {
+            fontSize: 22,
+            paddingHorizontal: 6,
+        }
 
 
-});
+    });
 

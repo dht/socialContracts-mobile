@@ -7,6 +7,9 @@ import {
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {getTheme} from '../../constants/themes';
+
+let colors = getTheme();
 
 export default class BigButton extends Component {
     constructor(props) {
@@ -20,7 +23,7 @@ export default class BigButton extends Component {
                 onPress={this.props.onClick}>
                 <View style={styles.container}>
                     <View style={styles.iconContainer}>
-                        <Icon.Button size={30} name={this.props.icon} color="#333" backgroundColor="transparent">
+                        <Icon.Button size={30} name={this.props.icon} color={colors['actionButton_text']} backgroundColor="transparent">
                         </Icon.Button>
                     </View>
                     <Text style={styles.title}>{this.props.title}</Text>
@@ -35,7 +38,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         flexDirection: 'row',
-        backgroundColor: '#f5f5f5',
+        backgroundColor: colors['actionButton_bk'],
         paddingHorizontal: 10,
         height:80,
     },
@@ -49,6 +52,7 @@ const styles = StyleSheet.create({
         fontSize:22,
         textAlign:'center',
         paddingRight:20,
+        color: colors['actionButton_text'],
     }
 });
 

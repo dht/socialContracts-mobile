@@ -38,7 +38,7 @@ export default class RangeRow extends Component {
                 <View style={styles.container}>
                     <Text style={styles.hours}>{text || 'not available'}</Text>
                     <View style={styles.iconContainer}>
-                        <Icon.Button onPress={this.props.onRemove} size={icon_size} name={icon} color="#333" backgroundColor="transparent">
+                        <Icon.Button onPress={this.props.onRemove} size={icon_size} name={icon} color="#555" backgroundColor="transparent">
                         </Icon.Button>
                     </View>
                 </View>
@@ -63,7 +63,8 @@ const styles = StyleSheet.create({
     },
     iconContainer: {
         borderRadius:8,
-        borderColor:'#777',
+        borderColor:'#e9e9e9',
+        backgroundColor:'#e9e9e9',
         width: 55,
         borderWidth:1,
         paddingLeft:9,
