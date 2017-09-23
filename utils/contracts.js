@@ -2,6 +2,29 @@ import {rangesToRangesArray, timePositionOfRangeArray, numberToTimeString} from 
 import {strings, setLanguage} from '../constants/languages';
 
 let str = strings();
+let fixed_date;
+
+export const setFixedDate = (date) => {
+    fixed_date = date;
+}
+
+const now = () => {
+    if (fixed_date) {
+        return new Date(fixed_date.getTime());
+    } else {
+        return new Date();
+    }
+}
+
+const getNow = (timeDeltaInHours = 0) => {
+    const _now = now();
+    _now.setHours(_now.getHours() + timeDeltaInHours);
+    return {
+        date: _now,
+        day: _now.getDay(),
+        time: _now.getHours() + (_now.getMinutes() / 60)
+    };
+}
 
 export const weekdayMap = (doesWeekStartsOnMonday) => {
     return doesWeekStartsOnMonday ? [0, 1, 1, 1, 1, 1, 0] : [1, 1, 1, 1, 1, 0, 0];
@@ -210,15 +233,5 @@ export const contractToText = (contract, language = 'en', hours24 = true, time) 
         email: rangeArrayToText(now.time, nextRelevantRange.email, false, language, hours24),
         facebook: rangeArrayToText(now.time, nextRelevantRange.facebook, false, language, hours24),
     }
-}
-
-export const getNow = (timeDeltaInHours = 0) => {
-    const _now = new Date();
-    _now.setHours(_now.getHours() + timeDeltaInHours);
-    return {
-        date: _now,
-        day: _now.getDay(),
-        time: _now.getHours() + (_now.getMinutes() / 60)
-    };
 }
 

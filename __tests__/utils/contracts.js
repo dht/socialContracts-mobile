@@ -1,5 +1,15 @@
-import {contractToAR, contractToNow, contractToText} from './contracts';
-import contract, {contract2} from '../utils/mocks/contract-1ffb5554';
+import {contractToAR, contractToNow, contractToText, setFixedDate} from '../../utils/contracts';
+import contract, {contract2} from '../../_mocks/contract-1ffb5554';
+
+beforeAll(() => {
+    const date = new Date();
+    date.setDate(14);
+    date.setMonth(8);
+    date.setFullYear(2017);
+    date.setHours(9);
+    setFixedDate(date);
+});
+
 
 it('returns availability ranges for contract', () => {
     expect(contractToAR(contract, 3)).toEqual({
@@ -51,7 +61,6 @@ it('returns next relevant ranges in text for contract', () => {
         "whatsapp": "available now"
     });
 });
-
 
 it('returns next relevant ranges in text for contract with planByDate', () => {
     expect(contractToText(contract2)).toEqual({
