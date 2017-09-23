@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import AvailabilityHours from './AvailabilityHours';
-import {hoursToList} from '../../utils/ranges';
+import {hoursToList} from 'social-contracts/utils/ranges';
 import {setCurrentChannel, setTitlebarHeader} from '../../reducers/UIState/UIState_actions';
 import routes from '../../constants/routes';
 

@@ -8,17 +8,17 @@ import {
     saveContractPlans,
     saveContractPlansByDate
 } from '../utils/contracts_api';
-import {setAppState, setAvailabilityString} from '../reducers/appState/appState_actions'
+import {setAppState, setAvailabilityString} from 'social-contracts/reducers/appState/appState_actions'
 import {setContractId, setIsLoading} from '../reducers/UIState/UIState_actions'
 import {showModal, modalTypes} from '../reducers/modal/modal_actions'
 import {guid8} from '../utils/guid'
 import {contractUrl} from '../constants/Config'
-import {contractToText} from '../utils/contracts'
+import {contractToText} from 'social-contracts/utils/contracts'
 
 import {Linking} from 'react-native'
 import {Share} from 'react-native';
 
-import {defaultAppState} from '../constants/appState';
+import {defaultAppState} from 'social-contracts/constants/appState';
 
 export const loadApp = () => {
 

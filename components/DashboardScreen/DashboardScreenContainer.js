@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import DashboardScreen from './DashboardScreen';
 
-import {setName} from '../../reducers/appState/appState_actions';
+import {setName} from 'social-contracts/reducers/appState/appState_actions';
 import {shareContract} from '../../reducers/app_thunks';
 
 import {contractUrl} from '../../constants/Config'

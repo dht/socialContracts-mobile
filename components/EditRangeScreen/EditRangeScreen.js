@@ -9,7 +9,7 @@ import {
 import Screen from '../Screen/Screen';
 import ListHeader from "../ListHeader/ListHeader";
 import TimePicker from "../TimePicker/TimePicker";
-import {lowerOrEqualTimeString, higherOrEqualTimeString} from "../../utils/ranges";
+import {lowerOrEqualTimeString, higherOrEqualTimeString} from "social-contracts/utils/ranges";
 
 export default class EditRangeScreen extends Component {
     constructor(props) {

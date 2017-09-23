@@ -1,10 +1,10 @@
 import {connect} from 'react-redux'
 import RangesScreen from './RangesScreen'
 
-import {rangesToList, getRanges, newValueForChannel, nextId } from '../../utils/ranges';
+import {rangesToList, getRanges, newValueForChannel, nextId } from 'social-contracts/utils/ranges';
 import routes from '../../constants/routes';
 import {listHeaderForChannel, addVerbTextForChannel, instructionsForChannel} from '../../constants/texts';
-import {addRangeForCurrent, deleteRangeById,} from '../../reducers/appState/appState_actions';
+import {addRangeForCurrent, deleteRangeById,} from 'social-contracts/reducers/appState/appState_actions';
 import {setInstructions, setCurrentRangeId,} from '../../reducers/UIState/UIState_actions';
 
 const mapStateToProps = (state, ownProps) => {

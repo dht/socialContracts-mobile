@@ -1,8 +1,8 @@
 import {connect} from 'react-redux'
 import EditRangeScreen from './EditRangeScreen'
 
-import {getRange} from '../../utils/ranges';
-import {saveRangeForCurrent} from '../../reducers/appState/appState_actions';
+import {getRange} from 'social-contracts/utils/ranges';
+import {saveRangeForCurrent} from 'social-contracts/reducers/appState/appState_actions';
 
 const mapStateToProps = (state, ownProps) => {
 

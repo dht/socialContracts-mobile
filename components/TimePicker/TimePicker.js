@@ -8,7 +8,7 @@ import {
 
 
 import DateTimePicker from 'react-native-modal-datetime-picker';
-import {timeStringToDate, dateToTimeString} from '../../utils/ranges';
+import {timeStringToDate, dateToTimeString} from 'social-contracts/utils/ranges';
 
 export default class TimePicker extends Component {
     constructor(props) {

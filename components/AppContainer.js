@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 import App from './App';
 
 import {loadApp} from '../reducers/app_thunks';
-import {setName} from '../reducers/appState/appState_actions';
+import {setName} from 'social-contracts/reducers/appState/appState_actions';
 import {setCurrentPlanType} from '../reducers/UIState/UIState_actions';
 
 const mapStateToProps = (state, ownProps) => {
